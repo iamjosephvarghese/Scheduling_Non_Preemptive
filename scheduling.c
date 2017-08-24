@@ -117,61 +117,183 @@ void fcfs(){
 // }
 
 void roundrobin(){
+  int i, j, n, b[10] , AT[10], PR[10], WT[10], TA[10];
+float wt, ta;
 
-  int id[10],b[10],wt[10],ta[10],c[10],n,total_burst=0,i,j,val=0,loc,tq;
+  int tq , RT[10] , remain , t=0 , flag=0;
+  	printf("\nEnter the number of processes: ");
+          scanf("%d" , &n);
+  	remain=n;
+          printf("\nEnter the Burst times: \n");
+          for(i=1 ; i<=n ; i++)
+          {
+                  printf("b[%d] = " , i);
+                  scanf("%d" , &b[i]);
+  		RT[i] = b[i];
+          }
+  	printf("\nEnter the Arrival times: \n");
+          for(i=1 ; i<=n ; i++)
+          {
+                  printf("b[%d] = " , i);
+                  scanf("%d" , &AT[i]);
+          }
+  	printf("\nEnter the time quantum: ");
+  	scanf("%d" , &tq);
 
-  printf("Enter the number of processes:");
-  scanf("%d",&n);
-  printf("Enter the time quantum:");
-  scanf("%d",&tq);
-  printf("Enter the burst time of the processes\n");
+  	wt = 0;
+  	ta = 0;
 
-  for(i=0;i<n;i++){
-    id[i]=i+1;
-    ta[i] = 0;
-    wt[i] = 0;
-    printf("Process %d:",i+1);
-    scanf("%d",&b[i]);
-    total_burst+=b[i];
-    c[i] = b[i];
-    }
+  	i=1;
+  	while(remain != 0)
+  	{
+  		if(RT[i] <= tq && RT[i]>0)
+  		{
+  			t += RT[i];
+  			RT[i] = 0;
+  			flag = 1;
+  		}
+  		else if(RT[i] > 0)
+  		{
+  			RT[i] -= tq;
+  			t += tq;
+  		}
+  		if(RT[i] == 0 && flag==1)
+  		{
+  			--remain;
+  			WT[i] = t - AT[i] - b[i];
+  			wt += WT[i];
+  			TA[i] = t - AT[i];
+  			ta += TA[i];
+  			flag = 0;
+  		}
+  		if(i == n)
+  			i=1;
+  		else if(AT[i+1] <= t)
+  			i++;
+  		else
+  			i=1;
+  	}
 
-    printf("Total Bust Time = %d\n",total_burst);
+  	wt /= n;
+          ta /= n;
+
+          printf ("\nThe waiting and turnaround times of all processes are: \n");
+          printf("PNO:\tAT\tb\tWT\tTA\n");
+          for(i=1 ; i<=n ; i++)
+          {
+  		printf("P%d\t%d\t%d\t%d\t%d\n" , i , AT[i] , b[i] , WT[i] , TA[i]);
+          }
+          printf("\nThe avg. waiting time is: %f\n" , wt);
+          printf("\nThe avg. turnaround time is: %f\n" , ta);
 
 
 
-
-    for(i=0;i<total_burst;i++){
-      val = 0;
-      while(b[val] == 0){
-        val++;
-      }
-      if(b[val] != 0 && val < n){
-        b[val]--;
-
-        for(j=val+1;j<n;j++){
-        }
-      }
-    }
-
-
-    for(i=0;i<total_burst;i++){
-      for(j=0;j<tq;j++){
-
-      }
-    }
-
-
-
-
-
-
-
-    printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
-    for(i=0;i<n;i++){
-      ta[i] = c[i] + wt[i];
-      printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
-    }
+//
+//   int id[10],b[10],wt[10],ta[10],c[10],at[10],n,total_burst=0,i,j,val=0,loc,tq,order[500];
+//
+//   printf("Enter the number of processes:");
+//   scanf("%d",&n);
+//   printf("Enter the time quantum:");
+//   scanf("%d",&tq);
+//   printf("Enter the burst time and arrival time of the processes\n");
+//
+//
+//   for(i=0;i<n;i++){
+//     id[i]=i+1;
+//     ta[i] = 0;
+//     wt[i] = 0;
+//     printf("Process %d:",i+1);
+//     scanf("%d",&b[i]);
+//     scanf("%d",&at[i]);
+//     total_burst+=b[i];
+//     c[i] = b[i];
+//     }
+//
+//     printf("Total Bust Time = %d\n",total_burst);
+//
+//
+//
+//
+//
+//     for(i=0;i<total_burst;i++){
+//       val = 0;
+//       while(b[val] == 0){
+//         val++;
+//       }
+//       if(b[val] != 0 && val < n){
+//         b[val]--;
+//
+//         for(j=val+1;j<n;j++){
+//         }
+//       }
+//     }
+//
+// ///
+//     for(i=0;i<total_burst;i++){
+//       for(j=0;j<tq;j++){
+//
+//       val = 0;
+//       if(j == tq-1 || b[val] == 0){
+//         val++;
+//       }
+//
+//       }
+//     }
+// ///
+//
+// for(y=0;y<n;y++){
+//   if(at[y] == 0){
+//     order[y] = y;
+//   }
+// }
+//
+// int z = 0;
+// int tq_here = 0;
+// val = 0;
+// for(i=0;i<total_burst;i++){
+//
+//
+//   //val = 0;
+//   if(tq_here == tq-1 && b[val] != 0){
+//     val++;
+//     tq_here = 0;
+//     order[z++] = val;
+//
+//   }else if(tq_here == tq-1 && b[val] == 0){
+//     //
+//   }else if(b[val] == 0 && tq_here != tq-1){
+//     tq_here = 0;
+//     val++;
+//     //order[z++] = val;
+//   }else{
+//
+//   //while(tq_here != tq-1 && b[val] != 0){
+//     b[val--];
+//     for(j=0;j<n;j++){
+//       if(j != val){
+//         if(b[j] != 0){
+//           wt[j]++;
+//         }
+//       }
+//     }
+//     tq_here++;
+//
+//   }
+//
+//
+//
+// }
+//
+//
+//
+//
+//
+//
+//     printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
+//     for(i=0;i<n;i++){
+//       ta[i] = c[i] + wt[i];
+//       printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
+//     }
 
 }
 
