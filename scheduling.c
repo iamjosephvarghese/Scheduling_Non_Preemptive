@@ -1,5 +1,4 @@
 #include<stdio.h>
-// void schd();
 void fcfs();
 void sjf();
 void pri();
@@ -88,33 +87,7 @@ void fcfs(){
 
 }
 
-// void schd(int id[],int b[],int c[],int wt[],int ta[],int tBurst,int n){
-//
-//   int i,j,val;
-//
-//
-//   for(i=0;i<tBurst;i++){
-//     val = 0;
-//     while(b[val] == 0){
-//       val++;
-//     }
-//     if(b[val] != 0 && val < n){
-//       b[val]--;
-//
-//       for(j=val+1;j<n;j++){
-//         wt[j]++;
-//       }
-//     }
-//   }
-//
-//
-//   printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
-//   for(i=0;i<n;i++){
-//     ta[i] = c[i] + wt[i];
-//     printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
-//   }
-//
-// }
+
 
 void roundrobin(){
   int i, j, n, b[10] , AT[10], PR[10], WT[10], TA[10];
@@ -188,112 +161,6 @@ float wt, ta;
 
 
 
-//
-//   int id[10],b[10],wt[10],ta[10],c[10],at[10],n,total_burst=0,i,j,val=0,loc,tq,order[500];
-//
-//   printf("Enter the number of processes:");
-//   scanf("%d",&n);
-//   printf("Enter the time quantum:");
-//   scanf("%d",&tq);
-//   printf("Enter the burst time and arrival time of the processes\n");
-//
-//
-//   for(i=0;i<n;i++){
-//     id[i]=i+1;
-//     ta[i] = 0;
-//     wt[i] = 0;
-//     printf("Process %d:",i+1);
-//     scanf("%d",&b[i]);
-//     scanf("%d",&at[i]);
-//     total_burst+=b[i];
-//     c[i] = b[i];
-//     }
-//
-//     printf("Total Bust Time = %d\n",total_burst);
-//
-//
-//
-//
-//
-//     for(i=0;i<total_burst;i++){
-//       val = 0;
-//       while(b[val] == 0){
-//         val++;
-//       }
-//       if(b[val] != 0 && val < n){
-//         b[val]--;
-//
-//         for(j=val+1;j<n;j++){
-//         }
-//       }
-//     }
-//
-// ///
-//     for(i=0;i<total_burst;i++){
-//       for(j=0;j<tq;j++){
-//
-//       val = 0;
-//       if(j == tq-1 || b[val] == 0){
-//         val++;
-//       }
-//
-//       }
-//     }
-// ///
-//
-// for(y=0;y<n;y++){
-//   if(at[y] == 0){
-//     order[y] = y;
-//   }
-// }
-//
-// int z = 0;
-// int tq_here = 0;
-// val = 0;
-// for(i=0;i<total_burst;i++){
-//
-//
-//   //val = 0;
-//   if(tq_here == tq-1 && b[val] != 0){
-//     val++;
-//     tq_here = 0;
-//     order[z++] = val;
-//
-//   }else if(tq_here == tq-1 && b[val] == 0){
-//     //
-//   }else if(b[val] == 0 && tq_here != tq-1){
-//     tq_here = 0;
-//     val++;
-//     //order[z++] = val;
-//   }else{
-//
-//   //while(tq_here != tq-1 && b[val] != 0){
-//     b[val--];
-//     for(j=0;j<n;j++){
-//       if(j != val){
-//         if(b[j] != 0){
-//           wt[j]++;
-//         }
-//       }
-//     }
-//     tq_here++;
-//
-//   }
-//
-//
-//
-// }
-//
-//
-//
-//
-//
-//
-//     printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
-//     for(i=0;i<n;i++){
-//       ta[i] = c[i] + wt[i];
-//       printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
-//     }
 
 }
 
@@ -326,9 +193,7 @@ void pri(){
           p[j] = p[j+1];
           p[j+1] = temp1;
 
-          // temp3 = b[j];
-          // b[j] = b[j+1];
-          // b[j+1] = temp3;
+
 
           temp2 = id[j];
           id[j] = id[j+1];
@@ -337,7 +202,6 @@ void pri(){
       }
     }
 
-    //schd(id,b,c,wt,ta,total_burst,n);
 
 
     for(i=0;i<total_burst;i++){
@@ -401,7 +265,6 @@ void sjf(){
       }
     }
 
-    //schd(id,b,c,wt,ta,total_burst,n);
 
 
     for(i=0;i<total_burst;i++){
