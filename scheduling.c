@@ -80,10 +80,17 @@ void fcfs(){
 
 
     printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
+    float total_turn_around = 0;
+    float total_waiting_time = 0;
     for(i=0;i<n;i++){
+      total_waiting_time+=wt[i];
       ta[i] = c[i] + wt[i];
+      total_turn_around+=ta[i];
       printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
     }
+
+    printf("Average turnaround time = %f",total_turn_around/n);
+    printf("Average waiting time = %f",total_waiting_time/n);
 
 }
 
@@ -219,11 +226,17 @@ void pri(){
     }
 
 
+    float total_turn_around = 0;
+    float total_waiting_time = 0;
     printf("Process\tPriority\tBurst Time\tWaiting Time\tTurn Around Time\n");
     for(i=0;i<n;i++){
+      total_waiting_time+=wt[i];
       ta[i] = c[i] + wt[i];
+      total_turn_around+=ta[i];
       printf("%d\t%d\t\t%d\t\t%d\t\t%d\n",id[i],p[i],c[i],wt[i],ta[i]);
     }
+    printf("Average turnaround time = %f",total_turn_around/n);
+    printf("Average waiting time = %f",total_waiting_time/n);
 
 
 }
@@ -282,10 +295,17 @@ void sjf(){
     }
 
 
+    float total_turn_around = 0;
+    float total_waiting_time = 0;
     printf("Process\tBurst Time\tWaiting Time\tTurn Around Time\n");
     for(i=0;i<n;i++){
+      total_waiting_time+=wt[i];
       ta[i] = c[i] + wt[i];
+      total_turn_around+=ta[i];
       printf("%d\t%d\t\t%d\t\t%d\n",id[i],c[i],wt[i],ta[i]);
     }
+    printf("Average turnaround time = %f",total_turn_around/n);
+    printf("Average waiting time = %f",total_waiting_time/n);
+
 
 }
